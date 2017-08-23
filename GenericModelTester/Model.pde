@@ -1,0 +1,89 @@
+void varInput() {
+  /*  The order that you add variables will be the order in which the keys correspond to differing visualizations
+   *  The order is also exactly how the variables will correspond to the general internal variables, e.g. 
+   *  the first variable added corresponds to var1 
+   *  Maximum number of variables supported by default is six
+   *  
+   *  addVariable(value, iterations, interval, precision, name)
+   *  Value (float): The best initial guess for the value of this variable
+   *  Iterations (int): The number of test values per variable. Use an odd number for optimal visualization.
+   *  Interval (float): The initial "distance" between the intervals at which the model will be tested at.
+   *  Precision (float): The precision at which the value will be calculated to.
+   *  Name (string): A string with the name of the variable
+   */
+  addVariable(-4, 5, 2, 0.1, "g1");
+  addVariable(0.5, 5, 0.5, 0.1, "g2");
+  addVariable(2, 5, 2, 0.1, "g3");
+  addVariable(-5, 5, 2, 0.1, "g4");
+
+  vis1 = 0;
+  vis2 = 1;
+
+  gamma = 0.75; // descent coefficient
+
+  //input your data here
+  inputTable = loadTable("inputData.csv", "header");
+}
+
+void initData() {
+  //initialize your data here as needed
+  inputData = new float[inputTable.getRowCount()][2];
+  for (int i = 0; i < inputTable.getRowCount (); i++) {
+    inputData[i][0] = inputTable.getFloat(i, "x");
+    inputData[i][1] = inputTable.getFloat(i, "y");
+  }
+}
+
+class Model {
+  void evalModelError() {
+    error = 0; 
+    for (int i = 0; i < inputData.length; i++ ) {
+      float inputVal = inputData[i][0];
+      float actVal = inputData[i][1];
+
+      prediction = evalModel(inputVal); //evaluate the model given input data
+      error += pow(actVal - prediction, 2); //evaluate the error, in this case with least squares
+    }
+  }
+
+  //input your model here, with "result" as the numerical output of the input parameters of your model 
+  //var1 through var6 are variables that you can use as coefficients in your model. Don't "skip" variables
+  //e.g. don't use var5 if you aren't using var3 or var4. 
+  float evalModel(float inputVal) {
+    return var1 + var2*exp(fPow((var3*inputVal + var4), 1.0/3));
+  }
+
+  /*********************/
+  //Don't touch the parts between the asteriks, which initialize the model class
+  float var1, var2, var3, var4, var5, var6, prediction, error; 
+
+  Model() {
+    error = 0;
+  }
+
+  Model(float[] valSet) { 
+    //adjust variables as necessary
+    //these variables are the default values if variables aren't added to be tested
+    setVals(valSet);
+  }
+
+  void setVals(float[] valSet) {
+    for (int i = 0; i < valSet.length; i ++ ) {
+      if (i == 0) {
+        this.var1 = valSet[i];
+      } else if (i == 1) {
+        this.var2 = valSet[i];
+      } else if (i == 2) {
+        this.var3 = valSet[i];
+      } else if (i == 3) {
+        this.var4 = valSet[i];
+      } else if (i == 4) {
+        this.var5 = valSet[i];
+      } else if (i == 5) {
+        this.var6 = valSet[i];
+      }
+    }
+    evalModelError();
+  }
+  /*********************/
+}
