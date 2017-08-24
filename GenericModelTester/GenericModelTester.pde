@@ -44,10 +44,6 @@ void setup() {
 
   runCalculations();
   model.setVals(Arrays.copyOfRange(errorArray, 0, errorArray.length-1));
-
-//  for (int i = 0; i < errorList.size (); i++) {
-//    println(Arrays.toString(errorList.get(i)));
-//  }
   println(errorArray);
   
   updateVoxel();

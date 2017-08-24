@@ -55,16 +55,23 @@ class Model {
 
   /*********************/
   //Don't touch the parts between the asteriks, which initialize the model class
-  float var1, var2, var3, var4, var5, var6, prediction, error; 
+  float var1, var2, var3, var4, var5, var6, prediction, error, maxValue, minValue; 
 
   Model() {
-    error = 0;
+    init();
   }
 
   Model(float[] valSet) { 
     //adjust variables as necessary
     //these variables are the default values if variables aren't added to be tested
+    init();
     setVals(valSet);
+  }
+
+  void init() {
+    error = 0;
+    maxValue = -1;  
+    minValue = Float.POSITIVE_INFINITY;
   }
 
   void setVals(float[] valSet) {
@@ -84,6 +91,15 @@ class Model {
       }
     }
     evalModelError();
+  }
+
+  void checkExtremes(float value) {
+    if (value > maxValue) {
+      maxValue = value;
+    }
+    if (value < minValue) {
+      minValue = value;
+    }
   }
   /*********************/
 }

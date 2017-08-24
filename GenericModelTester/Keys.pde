@@ -43,10 +43,12 @@ void keyPressed() {
 
 void key_x() {
   waitingX = true;
+  println("this is working"); 
 }
 
 void key_y() {
   waitingY = true;
+  println("maybe");
 }
 
 void key_1() {
@@ -55,6 +57,7 @@ void key_1() {
     updateVoxel();
     waitingX = false;
   } else if (waitingY == true) {
+    println("hm");
     vis2 = 0;
     updateVoxel();
     waitingY = false;
@@ -142,15 +145,5 @@ void key_slash() {
     updateVoxel();
   } else if (visMode == 1) {
     visMode = 0;
-  }
-}
-
-void updateVoxel() {
-  if (voxelMode == 1) {
-    VoxelPlotX(vis1);
-  } else if (voxelMode == 2) {
-    VoxelPlotY(vis2);
-  } else if (voxelMode == 0) {
-    VoxelPlot(vis1, vis2);
   }
 }

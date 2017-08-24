@@ -3,8 +3,6 @@ float backgroundOpacity = 200;
 float cubePixels = 300; //width of full voxel cube in pixels
 float zAxisInterval = 20; 
 float axesLabelOffset = 30;
-float maxValue = -1;  
-float minValue = Float.POSITIVE_INFINITY;
 int printI = 0;
 int voxelPlotWidth;
 
@@ -26,6 +24,7 @@ void VoxelPlotX(int index) {
   iterY = 1; 
   varXSpace = cubePixels/iterX;
   varYSpace = varXSpace;
+  model.init();
   for (float[] errorMat : errorList) {
     extractOneVarLoop(errorMat, index, 0);
   }
@@ -39,6 +38,7 @@ void VoxelPlotY(int index) {
   iterY = var.iter;
   varYSpace = cubePixels/iterY;
   varXSpace = varYSpace;
+  model.init();
   for (float[] errorMat : errorList) {
     extractOneVarLoop(errorMat, index, 0);
   }
@@ -54,17 +54,12 @@ void VoxelPlot(int index1, int index2) {
 
   varXSpace = cubePixels/var1.iter;
   varYSpace = cubePixels/var2.iter; 
+  
+  println(errorList.size(),index1, index2);
+  
+  model.init();
   for (float[] errorMat : errorList) {
     extractTwoVarLoop(errorMat, index1, index2, 0);
-  }
-}
-
-void checkExtremes(float value) {
-  if (value > maxValue) {
-    maxValue = value;
-  }
-  if (value < minValue) {
-    minValue = value;
   }
 }
 
@@ -75,15 +70,15 @@ void drawVoxelPlot(int index) {
     for (int y=0; y < iterY; y++) {
       float[] errorMat = filterErrorList.get((int)(x*iterY+y));
       float value = errorMat[errorMat.length - 1];
-      fill(255, 255, 255 - map(value, minValue, maxValue, 50, 200.0));
+      fill(255, 255, 255 - map(value, model.minValue, model.maxValue, 50, 200.0));
 
       //At the miniminum value, make voxel stand out and print out a statement (once) 
       //of minimum value and the optimized variables/values
-      if (value == minValue) {
+      if (value == model.minValue) {
         fill(100);
         float var1Val = errorMat[0];
         if (printI == 0) {
-          println("MinValue:", minValue + ",", var.name + ":", var1Val);
+          println("MinValue:", model.minValue + ",", var.name + ":", var1Val);
           printI ++;
         }
       }
@@ -100,16 +95,17 @@ void drawVoxelPlot(int index1, int index2) {
   Variable var2 = varList.get(index2);
   for (int x=0; x < iterX; x++) {
     for (int y=0; y < iterY; y++) {
+      //println("try",x,y,filterErrorList.size());
       float[] errorMat = filterErrorList.get((int)(x*iterY+y));
       float value = errorMat[errorMat.length - 1];
-      fill(255, 255, 255 - map(value, minValue, maxValue, 50, 200.0));
+      fill(255, 255, 255 - map(value, model.minValue, model.maxValue, 50, 200.0));
 
       //At the miniminum value, make voxel stand out and print out a statement (once) 
       //of minimum value and the optimized variables/values
-      if (value == minValue) {
+      if (value == model.minValue) {
         fill(100);
         if (printI == 0) {
-          println("MinValue:", minValue + ",", var1.name + ":", errorMat[0] + ",", var2.name + ":", errorMat[1]);
+          println("MinValue:", model.minValue + ",", var1.name + ":", errorMat[0] + ",", var2.name + ":", errorMat[1]);
           printI ++;
         }
       }
@@ -132,7 +128,7 @@ void initVoxelPlot() {
 void drawBox(int x, int y, float value) {
   float xTrans = (x-floor(iterX/2))*varXSpace;
   float yTrans = (y-floor(iterY/2))*varYSpace;
-  float zBoxHeight = value*pow(maxValue, -1)*cubePixels;
+  float zBoxHeight = value*pow(model.maxValue, -1)*cubePixels;
 
   pushMatrix();
   if (voxelPlotType == 0) {
@@ -247,9 +243,19 @@ void zLabel(Variable var1, Variable var2) {
   rotateY(5*PI/4);
   textSize(12);
   for (int z = 0; z < zInt + 1; z++) {
-    text(map(z, 0, zInt, 0, maxValue), 0, -cubePixels/zInt*(z), axesLabelOffset);
+    text(map(z, 0, zInt, 0, model.maxValue), 0, -cubePixels/zInt*(z), axesLabelOffset);
   }
   textSize(18);
   text("Error", axesLabelOffset/2, -cubePixels*11/10, axesLabelOffset);
   popMatrix();
+}
+
+void updateVoxel() {
+  if (voxelMode == 1) {
+    VoxelPlotX(vis1);
+  } else if (voxelMode == 2) {
+    VoxelPlotY(vis2);
+  } else if (voxelMode == 0) {
+    VoxelPlot(vis1, vis2);
+  }
 }
