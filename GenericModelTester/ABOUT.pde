@@ -8,11 +8,10 @@
  *  six or fewer coefficients. 
  *
  *  USE CASES AND NOTES
- *  Use the Model tab to input your model and observed values to optimize the model to. 
+ *  Use the Model tab to input your model and observed values to optimize the model to.
  *
- *  Need to make it abundantly clear that user needs to define reasonable range
- *
- *  X axis is on left hand side; Left hand rule oriented 
+ *  Need to make it abundantly clear that user needs to define reasonable range 
+ *  VoxelPlot is only filter information 
  *
  *  FEATURE SCOPE
  *  [COMPLETE] 1. Variable Class - a class to contain variables representing coefficients of the model
@@ -20,8 +19,11 @@
  *  [COMPLETE] 3. Dynamic Model Optimization - loops through all input variables and optimizes them to a local minimum
  *  [COMPLETE] 4. VoxelPlot - a visualization algorithm that plots 1D and 2D "voxels" of the error for the optimized variables
  *  [COMPLETE] 5. Example that tests multiple variables across a good range 
- *  [INCOMPLETE] 6. Keys and Menu
+ *  [INCOMPLETE] 6. Buttons, Keys and Menu
+ *  [INCOMPLETE] 7. View white initial state, light gray semitransparent possible solutions, green actual solution 
+ *                  Perhaps make a "heat map" of 
  *
  *  BUG FIXES
- *
+ *  Buttons
+ *  
  */

@@ -10,6 +10,7 @@ boolean precise = false;
 float gamma;
 int vis1, vis2;
 Table inputTable; // Data Handler(s) for Importing light Readings
+int menuWidth = 250; 
 
 void setup() {  
 
@@ -45,20 +46,17 @@ void setup() {
   runCalculations();
   model.setVals(Arrays.copyOfRange(errorArray, 0, errorArray.length-1));
   println(errorArray);
-  
   updateVoxel();
+  
+  makeMenu();
 }
 
 void draw() {
   background(0);
   
-  pushMatrix();
-  translate(width - menuWidth/2, height/2, 0);
-  rectMode(CENTER);
-  fill(100);
-  rect(0, 0, menuWidth, height);
-  popMatrix();  
+  menuBackground();
   
+  pushMatrix();
   if (visMode == 0) {
     inputDataVis();
   } else if (visMode == 1) {
@@ -70,6 +68,7 @@ void draw() {
       drawVoxelPlot(vis2);
     }
   }
+  popMatrix(); 
 }
 
 void runCalculations() {

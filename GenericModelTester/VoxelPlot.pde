@@ -54,10 +54,8 @@ void VoxelPlot(int index1, int index2) {
 
   varXSpace = cubePixels/var1.iter;
   varYSpace = cubePixels/var2.iter; 
-  
-  println(errorList.size(),index1, index2);
-  
   model.init();
+  
   for (float[] errorMat : errorList) {
     extractTwoVarLoop(errorMat, index1, index2, 0);
   }

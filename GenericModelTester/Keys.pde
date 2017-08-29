@@ -43,85 +43,117 @@ void keyPressed() {
 
 void key_x() {
   waitingX = true;
-  println("this is working"); 
 }
 
 void key_y() {
   waitingY = true;
-  println("maybe");
 }
 
 void key_1() {
-  if (waitingX == true) {
-    vis1 = 0;
-    updateVoxel();
-    waitingX = false;
-  } else if (waitingY == true) {
-    println("hm");
-    vis2 = 0;
-    updateVoxel();
-    waitingY = false;
+  if (varList.size() > 0) {
+    if (waitingX == true) {
+      if (vis2 != 0) {
+        vis1 = 0;
+        updateVoxel();
+      }
+      waitingX = false;
+    } else if (waitingY == true) {
+      if (vis1 != 0) {
+        vis2 = 0;
+        updateVoxel();
+      }
+      waitingY = false;
+    }
   }
 }
 
 void key_2() {
-  if (waitingX == true) {
-    vis1 = 1;
-    updateVoxel();
-    waitingX = false;
-  } else if (waitingY == true) {
-    vis2 = 1;
-    updateVoxel();
-    waitingY = false;
+  if (varList.size() > 1) {
+    if (waitingX == true) {
+      if (vis2 != 1) {
+        vis1 = 1;
+        updateVoxel();
+      }
+      waitingX = false;
+    } else if (waitingY == true) {
+      if (vis1 != 1) {
+        vis2 = 1;
+        updateVoxel();
+      }
+      waitingY = false;
+    }
   }
 }
 
 void key_3() {
-  if (waitingX == true) {
-    vis1 = 2;
-    updateVoxel();
-    waitingX = false;
-  } else if (waitingY == true) {
-    vis2 = 2;
-    updateVoxel();
-    waitingY = false;
+  if (varList.size() > 2) {
+    if (waitingX == true) {
+      if (vis2 != 2) {
+        vis1 = 2;
+        updateVoxel();
+      }
+      waitingX = false;
+    } else if (waitingY == true) {
+      if (vis1 != 2) {
+        vis2 = 2;
+        updateVoxel();
+      }
+      waitingY = false;
+    }
   }
 }
 
 void key_4() {
-  if (waitingX == true) {
-    vis1 = 3;
-    updateVoxel();
-    waitingX = false;
-    println(vis1);
-  } else if (waitingY == true) {
-    vis2 = 3;
-    updateVoxel();
-    waitingY = false;
+  if (varList.size() > 3) {
+    if (waitingX == true) {
+      if (vis2 != 3) {
+        vis1 = 3;
+        updateVoxel();
+      }
+      waitingX = false;
+    } else if (waitingY == true) {
+      if (vis1 != 3) {
+        vis2 = 3;
+        updateVoxel();
+      }
+      waitingY = false;
+    }
   }
 }
 
 void key_5() {
-  if (waitingX == true) {
-    vis1 = 4;
-    updateVoxel();
-    waitingX = false;
-  } else if (waitingY == true) {
-    vis2 = 4;
-    updateVoxel();
-    waitingY = false;
+  if (varList.size() > 4) {
+    if (waitingX == true) {
+      if (vis2 != 4) {
+        vis1 = 4;
+        updateVoxel();
+      }
+      waitingX = false;
+    } else if (waitingY == true) {
+      if (vis1 != 4) {
+        vis2 = 4;
+        updateVoxel();
+      }
+      waitingY = false;
+    }
   }
 }
 
 void key_6() {
-  if (waitingX == true) {
-    vis1 = 5;
-    updateVoxel();
-    waitingX = false;
-  } else if (waitingY == true) {
-    vis2 = 5;
-    updateVoxel();
-    waitingY = false;
+  if (varList.size() > 5) {
+    if (waitingX == true) {
+      if (vis2 != 5) {
+        vis1 = 5;
+        updateVoxel();
+      }
+      waitingX = false;
+    } else if (waitingY == true) {
+      if (vis1 != 5) {
+        vis2 = 5;
+        updateVoxel();
+      }
+      waitingY = false;
+    }
   }
 }
 
@@ -146,4 +178,5 @@ void key_slash() {
   } else if (visMode == 1) {
     visMode = 0;
   }
+  makeMenu();
 }
