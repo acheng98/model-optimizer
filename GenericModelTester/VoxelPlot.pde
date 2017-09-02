@@ -11,13 +11,13 @@ float varXSpace, varYSpace;
 float zTrans = -cubePixels/2;
 
 //Three types of VoxelPlot types:
-//0. One variable displayed along X axis
-//1. One variable displayed along Y axis
-//2. Two variables displayed along X & Y axes
-int voxelPlotType;
+//0. Two variables displayed along X & Y axes
+//1. One variable displayed along X axis
+//2. One variable displayed along Y axis
+//int voxelMode = 0; //Voxel Vis Modes: 0 for both axis, 1 for x-axis, 2 for y-axis
 
 void VoxelPlotX(int index) {
-  voxelPlotType = 0; 
+  voxelMode = 0; 
   filterErrorList = new ArrayList<float[]>();
   Variable var = varList.get(index);
   iterX = var.iter; 
@@ -31,7 +31,7 @@ void VoxelPlotX(int index) {
 }
 
 void VoxelPlotY(int index) {
-  voxelPlotType = 1; 
+  voxelMode = 1; 
   filterErrorList = new ArrayList<float[]>();
   Variable var = varList.get(index);
   iterX = 1;
@@ -45,7 +45,7 @@ void VoxelPlotY(int index) {
 }
 
 void VoxelPlot(int index1, int index2) {
-  voxelPlotType = 2; 
+  voxelMode = 2; 
   filterErrorList = new ArrayList<float[]>();
   Variable var1 = varList.get(index1);
   Variable var2 = varList.get(index2); 
@@ -55,7 +55,7 @@ void VoxelPlot(int index1, int index2) {
   varXSpace = cubePixels/var1.iter;
   varYSpace = cubePixels/var2.iter; 
   model.init();
-  
+
   for (float[] errorMat : errorList) {
     extractTwoVarLoop(errorMat, index1, index2, 0);
   }
@@ -129,11 +129,11 @@ void drawBox(int x, int y, float value) {
   float zBoxHeight = value*pow(model.maxValue, -1)*cubePixels;
 
   pushMatrix();
-  if (voxelPlotType == 0) {
+  if (voxelMode == 0) {
     translate(xTrans, 0, zTrans + zBoxHeight/2); //moves the voxels to the correct 3d coordinate
-  } else if (voxelPlotType == 1) {
+  } else if (voxelMode == 1) {
     translate(0, yTrans, zTrans + zBoxHeight/2); //moves the voxels to the correct 3d coordinate
-  } else if (voxelPlotType == 2) {
+  } else if (voxelMode == 2) {
     translate(xTrans, yTrans, zTrans + zBoxHeight/2); //moves the voxels to the correct 3d coordinate
   }
   box(varXSpace-1, varYSpace-1, zBoxHeight);
@@ -155,11 +155,11 @@ void drawXAxis(Variable var) {
   stroke(255);
   strokeWeight(4);
   pushMatrix();
-  if (voxelPlotType == 0) {
+  if (voxelMode == 0) {
     translate(0, cubePixels/2-varXSpace/2, 0);
     line(0, 0, 0, cubePixels*11/10, 0, 0);
     xLabel(var);
-  } else if (voxelPlotType == 1) {
+  } else if (voxelMode == 1) {
     translate(cubePixels/2-varXSpace/2, 0, 0);
     line(0, 0, 0, varXSpace*11/10, 0, 0);
   } else {
@@ -174,10 +174,10 @@ void drawYAxis(Variable var) {
   stroke(255);
   strokeWeight(4);
   pushMatrix();
-  if (voxelPlotType == 0) {
+  if (voxelMode == 0) {
     translate(0, cubePixels/2-varYSpace/2, 0);
     line(0, 0, 0, 0, varYSpace*11/10, 0);
-  } else if (voxelPlotType == 1) {
+  } else if (voxelMode == 1) {
     translate(cubePixels/2-varYSpace/2, 0, 0);
     line(0, 0, 0, 0, cubePixels*11/10, 0);
     yLabel(var);
@@ -193,9 +193,9 @@ void drawZAxis(Variable var1, Variable var2) {
   stroke(255);
   strokeWeight(4);
   pushMatrix();
-  if (voxelPlotType == 0) {
+  if (voxelMode == 0) {
     translate(0, cubePixels/2-varXSpace/2, 0);
-  } else if (voxelPlotType == 1) {
+  } else if (voxelMode == 1) {
     translate(cubePixels/2-varYSpace/2, 0, 0);
   } 
   line(0, 0, 0, 0, 0, cubePixels*11/10);

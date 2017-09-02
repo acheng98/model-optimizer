@@ -48,6 +48,7 @@ void setup() {
   println(errorArray);
   updateVoxel();
   
+  makeTabs(); 
   makeMenu();
 }
 
