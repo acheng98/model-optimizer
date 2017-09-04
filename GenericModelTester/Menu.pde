@@ -110,18 +110,18 @@ void controlEvent(ControlEvent theControlEvent) {
       voxelMode = 2;
       updateVoxel();
     }
-  } else {
+  } else if (theControlEvent.getController() instanceof controlP5.Button) {
     String[] name = theControlEvent.getController().getName().split("Var");
-    if (name[0] == "2X") {
+    if (name[0].equals("2X")) {
       key_x();
       buttonChangeVar(name);
-    } else if (name[0] == "2Y") {
+    } else if (name[0].equals("2Y")) {
       key_y();
       buttonChangeVar(name);
-    } else if (name[0] == "X") {
+    } else if (name[0].equals("X")) {
       key_x();
       buttonChangeVar(name);
-    } else if (name[0] == "Y") {
+    } else if (name[0].equals("Y")) {
       key_y();
       buttonChangeVar(name);
     }
@@ -129,17 +129,17 @@ void controlEvent(ControlEvent theControlEvent) {
 }
 
 void buttonChangeVar(String[] name) {
-  if (name[1] == "1") {
+  if (name[1].equals("1")) {
     key_1();
-  } else if (name[1] == "2") {
+  } else if (name[1].equals("2")) {
     key_2();
-  } else if (name[1] == "3") {
+  } else if (name[1].equals("3")) {
     key_3();
-  } else if (name[1] == "4") {
+  } else if (name[1].equals("4")) {
     key_4();
-  } else if (name[1] == "5") {
+  } else if (name[1].equals("5")) {
     key_5();
-  } else if (name[1] == "6") {
+  } else if (name[1].equals("6")) {
     key_6();
   }
 }

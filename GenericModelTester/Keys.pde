@@ -52,13 +52,15 @@ void key_y() {
 void key_1() {
   if (varList.size() > 0) {
     if (waitingX == true) {
-      if (vis2 != 0) {
+      if (voxelMode == 0 && vis2 == 0) {
+      } else {
         vis1 = 0;
         updateVoxel();
       }
       waitingX = false;
     } else if (waitingY == true) {
-      if (vis1 != 0) {
+      if (voxelMode == 0 && vis1 == 0) {
+      } else {
         vis2 = 0;
         updateVoxel();
       }
@@ -70,13 +72,15 @@ void key_1() {
 void key_2() {
   if (varList.size() > 1) {
     if (waitingX == true) {
-      if (vis2 != 1) {
+      if (voxelMode == 0 && vis2 == 1) {
+      } else {
         vis1 = 1;
         updateVoxel();
       }
       waitingX = false;
     } else if (waitingY == true) {
-      if (vis1 != 1) {
+      if (voxelMode == 0 && vis1 == 1) {
+      } else {
         vis2 = 1;
         updateVoxel();
       }
@@ -88,13 +92,15 @@ void key_2() {
 void key_3() {
   if (varList.size() > 2) {
     if (waitingX == true) {
-      if (vis2 != 2) {
+      if (voxelMode == 0 && vis2 == 2) {
+      } else {
         vis1 = 2;
         updateVoxel();
       }
       waitingX = false;
     } else if (waitingY == true) {
-      if (vis1 != 2) {
+      if (voxelMode == 0 && vis1 == 2) {
+      } else {
         vis2 = 2;
         updateVoxel();
       }
@@ -106,13 +112,15 @@ void key_3() {
 void key_4() {
   if (varList.size() > 3) {
     if (waitingX == true) {
-      if (vis2 != 3) {
+      if (voxelMode == 0 && vis2 == 3) {
+      } else {
         vis1 = 3;
         updateVoxel();
       }
       waitingX = false;
     } else if (waitingY == true) {
-      if (vis1 != 3) {
+      if (voxelMode == 0 && vis1 == 3) {
+      } else {
         vis2 = 3;
         updateVoxel();
       }
@@ -124,13 +132,15 @@ void key_4() {
 void key_5() {
   if (varList.size() > 4) {
     if (waitingX == true) {
-      if (vis2 != 4) {
+      if (voxelMode == 0 && vis2 == 4) {
+      } else {
         vis1 = 4;
         updateVoxel();
       }
       waitingX = false;
     } else if (waitingY == true) {
-      if (vis1 != 4) {
+      if (voxelMode == 0 && vis1 == 4) {
+      } else {
         vis2 = 4;
         updateVoxel();
       }
@@ -142,13 +152,15 @@ void key_5() {
 void key_6() {
   if (varList.size() > 5) {
     if (waitingX == true) {
-      if (vis2 != 5) {
+      if (voxelMode == 0 && vis2 == 5) {
+      } else {
         vis1 = 5;
         updateVoxel();
       }
       waitingX = false;
     } else if (waitingY == true) {
-      if (vis1 != 5) {
+      if (voxelMode == 0 && vis1 == 5) {
+      } else {
         vis2 = 5;
         updateVoxel();
       }
@@ -158,17 +170,26 @@ void key_6() {
 }
 
 void key_plus() {
-  if (voxelMode < 2) {
-    voxelMode += 1;
-    updateVoxel();
+  if (visMode == 0) {
+    visMode = 1;
+    voxelMode = 0;
+  } else { 
+    if (voxelMode < 2) {
+      voxelMode += 1;
+    }
   }
+  updateVoxel();
 }
 
 void key_minus() {
   if (voxelMode > 0) {
-    voxelMode += -1;
-    updateVoxel();
+    visMode = 1; 
+    voxelMode -= 1;
+  } else {
+    visMode = 0;
+    voxelMode = 0;
   }
+  updateVoxel();
 }
 
 void key_slash() {

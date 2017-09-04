@@ -253,6 +253,15 @@ void updateVoxel() {
   } else if (voxelMode == 2) {
     VoxelPlotY(vis2);
   } else if (voxelMode == 0) {
+    if (vis1 == vis2) {
+      if (vis1 == 0) {
+        vis2 = 1;
+      } else if (vis2 == varList.size()) {
+        vis1 = varList.size() - 1; 
+      } else {
+        vis2 += 1; 
+      }
+    }
     VoxelPlot(vis1, vis2);
   }
 }
