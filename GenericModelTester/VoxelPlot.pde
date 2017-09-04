@@ -10,14 +10,13 @@ float iterX, iterY;
 float varXSpace, varYSpace; 
 float zTrans = -cubePixels/2;
 
-//Three types of VoxelPlot types:
+//Three types of VoxelPlot types: (voxelMode)
 //0. Two variables displayed along X & Y axes
 //1. One variable displayed along X axis
 //2. One variable displayed along Y axis
-//int voxelMode = 0; //Voxel Vis Modes: 0 for both axis, 1 for x-axis, 2 for y-axis
 
 void VoxelPlotX(int index) {
-  voxelMode = 0; 
+  voxelMode = 1; 
   filterErrorList = new ArrayList<float[]>();
   Variable var = varList.get(index);
   iterX = var.iter; 
@@ -31,7 +30,7 @@ void VoxelPlotX(int index) {
 }
 
 void VoxelPlotY(int index) {
-  voxelMode = 1; 
+  voxelMode = 2; 
   filterErrorList = new ArrayList<float[]>();
   Variable var = varList.get(index);
   iterX = 1;
@@ -45,7 +44,7 @@ void VoxelPlotY(int index) {
 }
 
 void VoxelPlot(int index1, int index2) {
-  voxelMode = 2; 
+  voxelMode = 0; 
   filterErrorList = new ArrayList<float[]>();
   Variable var1 = varList.get(index1);
   Variable var2 = varList.get(index2); 
@@ -129,11 +128,11 @@ void drawBox(int x, int y, float value) {
   float zBoxHeight = value*pow(model.maxValue, -1)*cubePixels;
 
   pushMatrix();
-  if (voxelMode == 0) {
+  if (voxelMode == 1) {
     translate(xTrans, 0, zTrans + zBoxHeight/2); //moves the voxels to the correct 3d coordinate
-  } else if (voxelMode == 1) {
-    translate(0, yTrans, zTrans + zBoxHeight/2); //moves the voxels to the correct 3d coordinate
   } else if (voxelMode == 2) {
+    translate(0, yTrans, zTrans + zBoxHeight/2); //moves the voxels to the correct 3d coordinate
+  } else if (voxelMode == 0) {
     translate(xTrans, yTrans, zTrans + zBoxHeight/2); //moves the voxels to the correct 3d coordinate
   }
   box(varXSpace-1, varYSpace-1, zBoxHeight);
@@ -155,14 +154,14 @@ void drawXAxis(Variable var) {
   stroke(255);
   strokeWeight(4);
   pushMatrix();
-  if (voxelMode == 0) {
+  if (voxelMode == 1) {
     translate(0, cubePixels/2-varXSpace/2, 0);
     line(0, 0, 0, cubePixels*11/10, 0, 0);
     xLabel(var);
-  } else if (voxelMode == 1) {
+  } else if (voxelMode == 2) {
     translate(cubePixels/2-varXSpace/2, 0, 0);
     line(0, 0, 0, varXSpace*11/10, 0, 0);
-  } else {
+  } else if (voxelMode == 0) {
     line(0, 0, 0, cubePixels*11/10, 0, 0);
     xLabel(var);
   } 
@@ -174,14 +173,14 @@ void drawYAxis(Variable var) {
   stroke(255);
   strokeWeight(4);
   pushMatrix();
-  if (voxelMode == 0) {
+  if (voxelMode == 1) {
     translate(0, cubePixels/2-varYSpace/2, 0);
     line(0, 0, 0, 0, varYSpace*11/10, 0);
-  } else if (voxelMode == 1) {
+  } else if (voxelMode == 2) {
     translate(cubePixels/2-varYSpace/2, 0, 0);
     line(0, 0, 0, 0, cubePixels*11/10, 0);
     yLabel(var);
-  } else {
+  } else if (voxelMode == 0) {
     line(0, 0, 0, 0, cubePixels*11/10, 0);
     yLabel(var);
   } 
@@ -193,9 +192,9 @@ void drawZAxis(Variable var1, Variable var2) {
   stroke(255);
   strokeWeight(4);
   pushMatrix();
-  if (voxelMode == 0) {
+  if (voxelMode == 1) {
     translate(0, cubePixels/2-varXSpace/2, 0);
-  } else if (voxelMode == 1) {
+  } else if (voxelMode == 2) {
     translate(cubePixels/2-varYSpace/2, 0, 0);
   } 
   line(0, 0, 0, 0, 0, cubePixels*11/10);
