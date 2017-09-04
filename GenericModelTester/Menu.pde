@@ -51,7 +51,6 @@ void makeMenu() {
   if (visMode == 0) {
   }
   if (visMode == 1) {
-    voxelButtons();
   }
 }
 
@@ -67,25 +66,25 @@ void menuBackground() {
 void voxelButtons() {
   for (int i = 0; i < varList.size (); i++) {
     Variable var = varList.get(i);
-    cp5.addButton("2XVar"+Integer.toString(i))
+    cp5.addButton("2XVar"+Integer.toString(i+1))
       .setValue(0)
         .setPosition(width-menuWidth*7/10-menuWidth/8, height/12+height/30*i)
           .setSize(menuWidth/4, height/30-1)
             .moveTo("2 Variable Error Vis")
               ;
-    cp5.addButton("2YVar"+Integer.toString(i))
+    cp5.addButton("2YVar"+Integer.toString(i+1))
       .setValue(0)
         .setPosition(width-menuWidth*3/10-menuWidth/8, height/12+height/30*i)
           .setSize(menuWidth/4, height/30-1)
             .moveTo("2 Variable Error Vis")
               ;
-    cp5.addButton("XVar"+Integer.toString(i))
+    cp5.addButton("XVar"+Integer.toString(i+1))
       .setValue(0)
         .setPosition(width-menuWidth*5/10-menuWidth/8, height/12+height/30*i)
           .setSize(menuWidth/4, height/30-1)
             .moveTo("X-Axis Error Vis")
               ;
-    cp5.addButton("YVar"+Integer.toString(i))
+    cp5.addButton("YVar"+Integer.toString(i+1))
       .setValue(0)
         .setPosition(width-menuWidth*5/10-menuWidth/8, height/12+height/30*i)
           .setSize(menuWidth/4, height/30-1)
@@ -111,5 +110,36 @@ void controlEvent(ControlEvent theControlEvent) {
       voxelMode = 2;
       updateVoxel();
     }
+  } else {
+    String[] name = theControlEvent.getController().getName().split("Var");
+    if (name[0] == "2X") {
+      key_x();
+      buttonChangeVar(name);
+    } else if (name[0] == "2Y") {
+      key_y();
+      buttonChangeVar(name);
+    } else if (name[0] == "X") {
+      key_x();
+      buttonChangeVar(name);
+    } else if (name[0] == "Y") {
+      key_y();
+      buttonChangeVar(name);
+    }
+  }
+}
+
+void buttonChangeVar(String[] name) {
+  if (name[1] == "1") {
+    key_1();
+  } else if (name[1] == "2") {
+    key_2();
+  } else if (name[1] == "3") {
+    key_3();
+  } else if (name[1] == "4") {
+    key_4();
+  } else if (name[1] == "5") {
+    key_5();
+  } else if (name[1] == "6") {
+    key_6();
   }
 }

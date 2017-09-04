@@ -174,9 +174,17 @@ void key_minus() {
 void key_slash() {
   if (visMode == 0) {
     visMode = 1;
+    voxelMode = 0;
     updateVoxel();
-  } else if (visMode == 1) {
+  } else if (visMode == 1 && voxelMode == 0) {
+    visMode = 1;
+    voxelMode = 1;
+    updateVoxel();
+  } else if (visMode == 1 && voxelMode == 1) {
+    visMode = 1;
+    voxelMode = 2;
+    updateVoxel();
+  } else if (visMode == 1 && voxelMode == 2) {
     visMode = 0;
   }
-  makeMenu();
 }
