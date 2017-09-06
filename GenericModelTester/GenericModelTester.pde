@@ -12,6 +12,9 @@ int vis1, vis2;
 Table inputTable; // Data Handler(s) for Importing light Readings
 int menuWidth = 250; 
 
+// Load and Resize Image of Model Equations
+PImage equationImage = loadImage("Equation1.png");
+  
 void setup() {  
 
   size(1280, 768, P3D);
@@ -56,7 +59,7 @@ void setup() {
 void draw() {
   background(0);
   
-  menuBackground();
+  makeMenu();
   
   pushMatrix();
   if (visMode == 0) {

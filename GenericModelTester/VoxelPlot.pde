@@ -118,8 +118,10 @@ void initVoxelPlot() {
   lights(); //turn on the lights so that we see shading on the 3D objects
   voxelPlotWidth = width - menuWidth;
   translate(voxelPlotWidth/2, height/2); //move to the center of the sketch before we draw our graph
-  rotateX(map(mouseY, -width*2, 0, 0, TWO_PI));
-  rotateZ(map(mouseX, 0, width, 0, TWO_PI));
+  if (mouseX < voxelPlotWidth) {
+    rotateX(map(mouseY, -width*2, 0, 0, TWO_PI));
+    rotateZ(map(mouseX, 0, voxelPlotWidth, 0, TWO_PI));
+  } 
 }
 
 void drawBox(int x, int y, float value) {
@@ -257,9 +259,9 @@ void updateVoxel() {
       if (vis1 == 0) {
         vis2 = 1;
       } else if (vis2 == varList.size()) {
-        vis1 = varList.size() - 1; 
+        vis1 = varList.size() - 1;
       } else {
-        vis2 += 1; 
+        vis2 += 1;
       }
     }
     VoxelPlot(vis1, vis2);

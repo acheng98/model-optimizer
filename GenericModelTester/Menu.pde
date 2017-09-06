@@ -2,6 +2,31 @@ import controlP5.*;
 
 ControlP5 cp5;
 
+void makeMenu() {
+  menuBackground();
+
+  pushMatrix();
+  if (visMode == 0) {
+    translate(width-menuWidth,0,0);
+    fill(255);
+    textSize(20);
+    text("Equation:",menuWidth/2,50);
+    //image(equationImage, menuWidth, 100);
+  }
+  if (visMode == 1) {
+  }
+  popMatrix();
+}
+
+void menuBackground() {
+  pushMatrix();
+  translate(width - menuWidth/2, height/2, 0);
+  rectMode(CENTER);
+  fill(100);
+  rect(0, 0, menuWidth, height);
+  popMatrix();
+}
+
 void makeTabs() {
   cp5 = new ControlP5(this);
 
@@ -43,24 +68,6 @@ void makeTabs() {
     .activateEvent(true)
       .setId(4)
         ;
-}
-
-void makeMenu() {
-  menuBackground();
-
-  if (visMode == 0) {
-  }
-  if (visMode == 1) {
-  }
-}
-
-void menuBackground() {
-  pushMatrix();
-  translate(width - menuWidth/2, height/2, 0);
-  rectMode(CENTER);
-  fill(100);
-  rect(0, 0, menuWidth, height);
-  popMatrix();
 }
 
 void voxelButtons() {
