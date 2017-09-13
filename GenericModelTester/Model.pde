@@ -11,15 +11,15 @@ void varInput() {
    *  Precision (float): The precision at which the value will be calculated to.
    *  Name (string): A string with the name of the variable
    */
-  addVariable(-4, 5, 2, 0.1, "g1");
-  addVariable(0.5, 5, 0.5, 0.1, "g2");
-  addVariable(2, 5, 2, 0.1, "g3");
-  addVariable(-5, 5, 2, 0.1, "g4");
+  addVariable(-6, 5, 2, 0.1, "g1");
+  addVariable(1, 5, 0.5, 0.1, "g2");
+  addVariable(1, 5, 2, 0.1, "g3");
+  addVariable(-4, 5, 2, 0.1, "g4");
 
   vis1 = 0;
   vis2 = 1;
 
-  gamma = 0.75; // descent coefficient
+  gamma = 0.75; // descent coefficient - the higher the descent coefficient, the longer the time it will take, but the more accurate the fit will be 
 
   //input your data here
   inputTable = loadTable("inputData.csv", "header");

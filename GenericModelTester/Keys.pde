@@ -2,6 +2,9 @@ int visMode = 0; //Visualization Modes: 0 for input data visualization, 1 for er
 int voxelMode = 0; //Voxel Vis Modes: 0 for both axis, 1 for x-axis, 2 for y-axis
 boolean waitingX = false;
 boolean waitingY = false;
+boolean rotate = true;
+int mouseYsaved = 0;
+int mouseXsaved = 0; 
 
 void keyPressed() {
   switch(key) {
@@ -38,6 +41,14 @@ void keyPressed() {
   case '/':
     key_slash();
     break;
+  }
+}
+
+void mouseClicked() {
+  if (mouseX < voxelPlotWidth && mouseY > 20) {
+    mouseYsaved = mouseY;
+    mouseXsaved = mouseX;
+    rotate = !rotate;
   }
 }
 

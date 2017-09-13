@@ -59,7 +59,7 @@ void extractOneVarLoop(float[] errorMat, int index, int level) {
       errorMat[index], errorMat[errorMat.length - 1]
     };
     filterErrorList.add(Arrays.copyOf(newArray, newArray.length)); 
-    model.checkExtremes(errorMat[level]);
+    iterModel.checkExtremes(errorMat[level]);
   } else {
     if (level == index) {
       extractOneVarLoop(errorMat, index, level + 1);
@@ -77,7 +77,7 @@ void extractTwoVarLoop(float[] errorMat, int index1, int index2, int level) {
       errorMat[index1], errorMat[index2], errorMat[errorMat.length - 1]
     };
     filterErrorList.add(Arrays.copyOf(newArray, newArray.length)); 
-    model.checkExtremes(errorMat[level]);
+    iterModel.checkExtremes(errorMat[level]);
   } else {
     if (level == index1 || level == index2) {
       extractTwoVarLoop(errorMat, index1, index2, level + 1);
