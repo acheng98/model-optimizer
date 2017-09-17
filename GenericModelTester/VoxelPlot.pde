@@ -67,17 +67,13 @@ void drawVoxelPlot(int index) {
     for (int y=0; y < iterY; y++) {
       float[] errorMat = filterErrorList.get((int)(x*iterY+y));
       float value = errorMat[errorMat.length - 1];
-      fill(255, 255, 255 - map(value, iterModel.minValue, iterModel.maxValue, 50, 200.0));
+      float mappedVal = map(value, iterModel.minValue, iterModel.maxValue, 50, 200.0);
+      fill(255, 255 - mappedVal, 255 - mappedVal);
 
       //At the miniminum value, make voxel stand out and print out a statement (once) 
       //of minimum value and the optimized variables/values
       if (value == iterModel.minValue) {
         fill(100);
-        float var1Val = errorMat[0];
-        if (printI == 0) {
-          println("MinValue:", iterModel.minValue + ",", var.name + ":", var1Val);
-          printI ++;
-        }
       }
       drawBox(x, y, value);
     }
@@ -95,16 +91,13 @@ void drawVoxelPlot(int index1, int index2) {
       //println("try",x,y,filterErrorList.size());
       float[] errorMat = filterErrorList.get((int)(x*iterY+y));
       float value = errorMat[errorMat.length - 1];
-      fill(255, 255, 255 - map(value, iterModel.minValue, iterModel.maxValue, 50, 200.0));
+      float mappedVal = map(value, iterModel.minValue, iterModel.maxValue, 50, 200.0);
+      fill(255, 255 - mappedVal, 255 - mappedVal);
 
       //At the miniminum value, make voxel stand out and print out a statement (once) 
       //of minimum value and the optimized variables/values
       if (value == iterModel.minValue) {
         fill(100);
-        if (printI == 0) {
-          println("MinValue:", iterModel.minValue + ",", var1.name + ":", errorMat[0] + ",", var2.name + ":", errorMat[1]);
-          printI ++;
-        }
       }
 
       drawBox(x, y, value);

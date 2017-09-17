@@ -2,7 +2,7 @@ import controlP5.*;
 
 ControlP5 cp5;
 int menuWidth = 250; 
-int legendHeight = 150;
+int legendHeight = 200;
 int legendWidth = menuWidth*4/5;
 
 void makeMenu() {
@@ -22,6 +22,15 @@ void makeMenu() {
     } else if (voxelMode == 2) {
       menuThree();
     }
+    pushMatrix();
+    translate(menuWidth/2, height/2+menuWidth/2);
+
+    text("Minimum Error:\n" + iterModel.minValue, 0, -menuWidth*3/10);
+    text("Optimized Variables:",0,0);
+    for (int i = 0; i < varList.size (); i++) {
+      text(varList.get(i).name + ": " + errorArray[i], 0, (i+1)*20);
+    }
+    popMatrix();
   }
   popMatrix();
 }
@@ -40,27 +49,36 @@ void menuBackground() {
 void menuZero() {
   text("Equation:", menuWidth/2, 45);
   image(equationImage, menuWidth/2, 100, menuWidth*4/5, menuWidth*4/5*equationImage.height/equationImage.width);
-  
+
   //Legend
   pushMatrix();
-  translate(menuWidth/2, height-menuWidth/2);
+  translate(menuWidth/2, height-legendHeight-(menuWidth-legendWidth)/2);
+
+  fill(255, 0); 
+  stroke(255); 
+  strokeWeight(2);
+  rect(0, 0, legendWidth, legendHeight);
+
+  fill(255); 
+  noStroke();
+  text("Legend:", 0, -legendHeight*3/8);
+
+  textAlign(LEFT, CENTER);
+  text("Input Data", -legendWidth/16, -legendHeight*3/16);
+  ellipse(-legendWidth/4, -legendHeight*3/16, 5, 5);
   
-  fill(255,0); stroke(255); strokeWeight(2);
-  rect(0,0,legendWidth,legendHeight);
-  
-  fill(255); noStroke();
-  text("Legend:", 0, -25-menuWidth*3/10);
-  
-  textAlign(LEFT,CENTER);
-  text("Original\nGuess", -legendWidth/16, -legendHeight/5);
-  stroke(255); strokeWeight(4);
-  line(-legendWidth*3/8,-legendHeight/5,-legendWidth/8,-legendHeight/5);
-  
-  text("Optimized\nValues", -legendWidth/16, legendHeight/5);
-  stroke(255,0,0); strokeWeight(4);
-  line(-legendWidth*3/8,legendHeight/5,-legendWidth/8,legendHeight/5);
-  
-  textAlign(CENTER,CENTER); strokeWeight(1);
+  text("Original\nGuess", -legendWidth/16, legendHeight/16);
+  stroke(255); 
+  strokeWeight(4);
+  line(-legendWidth*3/8, legendHeight/16, -legendWidth/8, legendHeight/16);
+
+  text("Optimized\nValues", -legendWidth/16, legendHeight*5/16);
+  stroke(255, 0, 0); 
+  strokeWeight(4);
+  line(-legendWidth*3/8, legendHeight*5/16, -legendWidth/8, legendHeight*5/16);
+
+  textAlign(CENTER, CENTER); 
+  strokeWeight(1);
   noStroke();
   popMatrix();
 }
@@ -126,25 +144,25 @@ void voxelButtons() {
     Variable var = varList.get(i);
     cp5.addButton("2XVar"+Integer.toString(i+1))
       .setValue(0)
-        .setPosition(width-menuWidth*7/10-menuWidth/8, 15+height/12+height/30*i)
+        .setPosition(width-menuWidth*7/10-menuWidth/8, 17+height/12+height/30*i)
           .setSize(menuWidth/4, height/30-1)
             .moveTo("2 Variable Error Vis")
               ;
     cp5.addButton("2YVar"+Integer.toString(i+1))
       .setValue(0)
-        .setPosition(width-menuWidth*3/10-menuWidth/8, 15+height/12+height/30*i)
+        .setPosition(width-menuWidth*3/10-menuWidth/8, 17+height/12+height/30*i)
           .setSize(menuWidth/4, height/30-1)
             .moveTo("2 Variable Error Vis")
               ;
     cp5.addButton("XVar"+Integer.toString(i+1))
       .setValue(0)
-        .setPosition(width-menuWidth*5/10-menuWidth/8, height/12+height/30*i)
+        .setPosition(width-menuWidth*5/10-menuWidth/8, 2+height/12+height/30*i)
           .setSize(menuWidth/4, height/30-1)
             .moveTo("X-Axis Error Vis")
               ;
     cp5.addButton("YVar"+Integer.toString(i+1))
       .setValue(0)
-        .setPosition(width-menuWidth*5/10-menuWidth/8, height/12+height/30*i)
+        .setPosition(width-menuWidth*5/10-menuWidth/8, 2+height/12+height/30*i)
           .setSize(menuWidth/4, height/30-1)
             .moveTo("Y-Axis Error Vis")
               ;

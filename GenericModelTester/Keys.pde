@@ -64,6 +64,7 @@ void key_1() {
   if (varList.size() > 0) {
     if (waitingX == true) {
       if (voxelMode == 0 && vis2 == 0) {
+        swapVis1Vis2();
       } else {
         vis1 = 0;
         updateVoxel();
@@ -71,6 +72,7 @@ void key_1() {
       waitingX = false;
     } else if (waitingY == true) {
       if (voxelMode == 0 && vis1 == 0) {
+        swapVis1Vis2();
       } else {
         vis2 = 0;
         updateVoxel();
@@ -84,6 +86,7 @@ void key_2() {
   if (varList.size() > 1) {
     if (waitingX == true) {
       if (voxelMode == 0 && vis2 == 1) {
+        swapVis1Vis2();
       } else {
         vis1 = 1;
         updateVoxel();
@@ -91,6 +94,7 @@ void key_2() {
       waitingX = false;
     } else if (waitingY == true) {
       if (voxelMode == 0 && vis1 == 1) {
+        swapVis1Vis2();
       } else {
         vis2 = 1;
         updateVoxel();
@@ -104,6 +108,7 @@ void key_3() {
   if (varList.size() > 2) {
     if (waitingX == true) {
       if (voxelMode == 0 && vis2 == 2) {
+        swapVis1Vis2();
       } else {
         vis1 = 2;
         updateVoxel();
@@ -111,6 +116,7 @@ void key_3() {
       waitingX = false;
     } else if (waitingY == true) {
       if (voxelMode == 0 && vis1 == 2) {
+        swapVis1Vis2();
       } else {
         vis2 = 2;
         updateVoxel();
@@ -124,6 +130,7 @@ void key_4() {
   if (varList.size() > 3) {
     if (waitingX == true) {
       if (voxelMode == 0 && vis2 == 3) {
+        swapVis1Vis2();
       } else {
         vis1 = 3;
         updateVoxel();
@@ -131,6 +138,7 @@ void key_4() {
       waitingX = false;
     } else if (waitingY == true) {
       if (voxelMode == 0 && vis1 == 3) {
+        swapVis1Vis2();
       } else {
         vis2 = 3;
         updateVoxel();
@@ -144,6 +152,7 @@ void key_5() {
   if (varList.size() > 4) {
     if (waitingX == true) {
       if (voxelMode == 0 && vis2 == 4) {
+        swapVis1Vis2();
       } else {
         vis1 = 4;
         updateVoxel();
@@ -151,6 +160,7 @@ void key_5() {
       waitingX = false;
     } else if (waitingY == true) {
       if (voxelMode == 0 && vis1 == 4) {
+        swapVis1Vis2();
       } else {
         vis2 = 4;
         updateVoxel();
@@ -164,6 +174,7 @@ void key_6() {
   if (varList.size() > 5) {
     if (waitingX == true) {
       if (voxelMode == 0 && vis2 == 5) {
+        swapVis1Vis2();
       } else {
         vis1 = 5;
         updateVoxel();
@@ -171,6 +182,7 @@ void key_6() {
       waitingX = false;
     } else if (waitingY == true) {
       if (voxelMode == 0 && vis1 == 5) {
+        swapVis1Vis2();
       } else {
         vis2 = 5;
         updateVoxel();
@@ -219,4 +231,10 @@ void key_slash() {
   } else if (visMode == 1 && voxelMode == 2) {
     visMode = 0;
   }
+}
+
+void swapVis1Vis2() {
+  int temp = vis1;
+  vis1 = vis2;
+  vis2 = temp;
 }

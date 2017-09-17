@@ -5,6 +5,7 @@ void varInput() {
    *  Maximum number of variables supported by default is six
    *  
    *  addVariable(value, iterations, interval, precision, name)
+   *
    *  Value (float): The best initial guess for the value of this variable
    *  Iterations (int): The number of test values per variable. Use an odd number for optimal visualization.
    *  Interval (float): The initial "distance" between the intervals at which the model will be tested at.
@@ -19,7 +20,7 @@ void varInput() {
   vis1 = 0;
   vis2 = 1;
 
-  gamma = 0.75; // descent coefficient - the higher the descent coefficient, the longer the time it will take, but the more accurate the fit will be 
+  gamma = 0.85; // descent coefficient - the higher the descent coefficient, the longer the time it will take, but the more accurate the fit will be 
 
   //input your data here
   inputTable = loadTable("inputData.csv", "header");
