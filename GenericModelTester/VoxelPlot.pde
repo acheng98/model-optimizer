@@ -88,7 +88,6 @@ void drawVoxelPlot(int index1, int index2) {
   Variable var2 = varList.get(index2);
   for (int x=0; x < iterX; x++) {
     for (int y=0; y < iterY; y++) {
-      //println("try",x,y,filterErrorList.size());
       float[] errorMat = filterErrorList.get((int)(x*iterY+y));
       float value = errorMat[errorMat.length - 1];
       float mappedVal = map(value, iterModel.minValue, iterModel.maxValue, 50, 200.0);
@@ -115,6 +114,9 @@ void initVoxelPlot() {
     rotateX(map(mouseY, -width*2, 0, 0, TWO_PI));
     rotateZ(map(mouseX, 0, voxelPlotWidth, 0, TWO_PI));
   } else if (rotate == false) {
+    rotateX(map(mouseYclicked, -width*2, 0, 0, TWO_PI));
+    rotateZ(map(mouseXclicked, 0, voxelPlotWidth, 0, TWO_PI));
+  } else if (mouseX > voxelPlotWidth) {
     rotateX(map(mouseYsaved, -width*2, 0, 0, TWO_PI));
     rotateZ(map(mouseXsaved, 0, voxelPlotWidth, 0, TWO_PI));
   }

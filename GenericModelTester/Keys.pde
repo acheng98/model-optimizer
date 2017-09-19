@@ -5,6 +5,8 @@ boolean waitingY = false;
 boolean rotate = true;
 int mouseYsaved = 0;
 int mouseXsaved = 0; 
+int mouseYclicked = 0;
+int mouseXclicked = 0; 
 
 void keyPressed() {
   switch(key) {
@@ -46,9 +48,16 @@ void keyPressed() {
 
 void mouseClicked() {
   if (mouseX < voxelPlotWidth && mouseY > 20) {
+    mouseYclicked = mouseY;
+    mouseXclicked = mouseX;
+    rotate = !rotate;
+  }
+}
+
+void mouseRotate() {
+  if (mouseX < voxelPlotWidth && mouseY > 20) {
     mouseYsaved = mouseY;
     mouseXsaved = mouseX;
-    rotate = !rotate;
   }
 }
 
@@ -67,18 +76,18 @@ void key_1() {
         swapVis1Vis2();
       } else {
         vis1 = 0;
-        updateVoxel();
       }
+      updateVoxel();
       waitingX = false;
     } else if (waitingY == true) {
       if (voxelMode == 0 && vis1 == 0) {
         swapVis1Vis2();
       } else {
         vis2 = 0;
-        updateVoxel();
       }
       waitingY = false;
     }
+    updateVoxel();
   }
 }
 
@@ -89,7 +98,6 @@ void key_2() {
         swapVis1Vis2();
       } else {
         vis1 = 1;
-        updateVoxel();
       }
       waitingX = false;
     } else if (waitingY == true) {
@@ -97,10 +105,10 @@ void key_2() {
         swapVis1Vis2();
       } else {
         vis2 = 1;
-        updateVoxel();
       }
       waitingY = false;
     }
+    updateVoxel();
   }
 }
 
@@ -111,7 +119,6 @@ void key_3() {
         swapVis1Vis2();
       } else {
         vis1 = 2;
-        updateVoxel();
       }
       waitingX = false;
     } else if (waitingY == true) {
@@ -119,10 +126,10 @@ void key_3() {
         swapVis1Vis2();
       } else {
         vis2 = 2;
-        updateVoxel();
       }
       waitingY = false;
     }
+    updateVoxel();
   }
 }
 
@@ -133,7 +140,6 @@ void key_4() {
         swapVis1Vis2();
       } else {
         vis1 = 3;
-        updateVoxel();
       }
       waitingX = false;
     } else if (waitingY == true) {
@@ -141,10 +147,10 @@ void key_4() {
         swapVis1Vis2();
       } else {
         vis2 = 3;
-        updateVoxel();
       }
       waitingY = false;
     }
+    updateVoxel();
   }
 }
 
@@ -155,7 +161,6 @@ void key_5() {
         swapVis1Vis2();
       } else {
         vis1 = 4;
-        updateVoxel();
       }
       waitingX = false;
     } else if (waitingY == true) {
@@ -163,10 +168,10 @@ void key_5() {
         swapVis1Vis2();
       } else {
         vis2 = 4;
-        updateVoxel();
       }
       waitingY = false;
     }
+    updateVoxel();
   }
 }
 
@@ -177,7 +182,6 @@ void key_6() {
         swapVis1Vis2();
       } else {
         vis1 = 5;
-        updateVoxel();
       }
       waitingX = false;
     } else if (waitingY == true) {
@@ -185,10 +189,10 @@ void key_6() {
         swapVis1Vis2();
       } else {
         vis2 = 5;
-        updateVoxel();
       }
       waitingY = false;
     }
+    updateVoxel();
   }
 }
 

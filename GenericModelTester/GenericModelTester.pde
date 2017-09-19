@@ -10,7 +10,8 @@ float[] errorArray = {};
 float[][] inputData; 
 boolean precise = false; 
 float gamma;
-int vis1, vis2;
+int vis1 = 0;
+int vis2 = 1;
 Table inputTable; // Data Handler(s) for Importing light Readings
 
 // Load and Resize Image of Model Equations
@@ -72,7 +73,7 @@ void setup() {
 
 void draw() {
   background(0);
-
+  mouseRotate(); 
   makeMenu();
 
   pushMatrix();

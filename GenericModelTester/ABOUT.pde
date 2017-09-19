@@ -65,4 +65,6 @@
  *  [COMPLETE] 6. Buttons, Keys and Menu
  *  [COMPLETE] 7. View white initial state, red actual solution
  *  
+ *  BUGS
+ *  When visualizing pairs of variables, sometimes it "freezes" one of the variables' box locations (but does switch around the axes)
  */
