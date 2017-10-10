@@ -15,7 +15,7 @@
  *  data and write the desired model equation. All functions that require user input are in the "UserInputTab"
  *  file. 
  *  Deeper knowledge of Processing is suggested when mutating the Input Data Visualization. Otherwise, 
- *  nothing is explicitly necessary for the user to alter. 
+ *  it is not explicitly necessary for the user to alter anything. 
  * 
  *  USE CASES AND NOTES
  *  Use the Model tab to input your model equation, observed values for optimization of the model, best guesses 
