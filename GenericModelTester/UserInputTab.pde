@@ -12,12 +12,12 @@ void varInput() {
    *  Precision (float): The precision at which the value will be calculated to.
    *  Name (string): A string with the name of the variable
    */
-  addVariable(-6, 5, 4, 0.1, "g1"); //Actual Value: -4.0
+  addVariable(-3, 5, 4, 0.1, "g1"); //Actual Value: -4.0
   addVariable(1, 5, 0.5, 0.1, "g2"); //Actual Value: 0.5 
   addVariable(1, 5, 2, 0.1, "g3"); //Actual Value: 2.0
   addVariable(-4, 5, 2, 0.1, "g4"); //Actual value: -5.0
 
-  gamma = 0.75; // descent coefficient - the higher the descent coefficient, the longer the time it will take, but the more accurate the fit will be 
+  gamma = 0.90; // descent coefficient - the higher the descent coefficient, the longer the time it will take, but the more accurate the fit will be 
 
   //input your data here
   inputTable = loadTable("inputData.csv", "header");
@@ -99,5 +99,11 @@ class Model {
       minValue = value;
     }
   }
+  
+  float[] returnVariables() {
+    float[] arr = {var1,var2,var3,var4,var5,var6};
+    return arr;
+  }
+  
   /*********************/
 }

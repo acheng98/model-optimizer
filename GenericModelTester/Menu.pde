@@ -48,7 +48,17 @@ void menuBackground() {
 
 void menuZero() {
   text("Equation:", menuWidth/2, 45);
-  image(equationImage, menuWidth/2, 100, menuWidth*4/5, menuWidth*4/5*equationImage.height/equationImage.width);
+  image(equationImage, menuWidth/2, 80, menuWidth*4/5, menuWidth*4/5*equationImage.height/equationImage.width);
+
+  text("Input Values:", menuWidth/2, 125);
+  for (int i = 0; i < errorArray.length - 1; i++) { 
+     text(varList.get(i).name + ": " + initModel.returnVariables()[i], menuWidth/2, 150 + i*20);
+  }
+
+  text("Optimized Values:", menuWidth/2, 250);
+  for (int i = 0; i < errorArray.length - 1; i++) { 
+     text(varList.get(i).name + ": " + errorArray[i], menuWidth/2, 275 + i*20);
+  }
 
   //Legend
   pushMatrix();

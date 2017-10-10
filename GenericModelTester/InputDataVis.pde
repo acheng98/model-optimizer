@@ -46,15 +46,6 @@ void inputDataVis() {
       rect(xCoord, yCoordInit, 1, 1);
     }
 
-//    fill(155, 100);
-//    for (Model intermModel : modelSnapshots) { 
-//      float varYinterm = initModel.intermModel((float)varX/100); 
-//      float yCoordInterm = map(varYinterm, -30, 30, (height-150)/2, -(height-150)/2);
-//      if (varYinterm > -35 && varYinterm < 35) {
-//        rect(xCoord, yCoordInterm, 1, 1);
-//      }
-//    }
-
     fill(255, 0, 0);
     float varY = iterModel.evalModel((float)varX/100);
     float yCoord = map(varY, -30, 30, (height-150)/2, -(height-150)/2);

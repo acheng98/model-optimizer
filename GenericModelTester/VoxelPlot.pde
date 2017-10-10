@@ -3,7 +3,6 @@ float backgroundOpacity = 200;
 float cubePixels = 300; //width of full voxel cube in pixels
 float zAxisInterval = 20; 
 float axesLabelOffset = 30;
-int printI = 0;
 int voxelPlotWidth;
 
 float iterX, iterY;
