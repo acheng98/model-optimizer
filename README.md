@@ -1,8 +1,12 @@
 # model-optimizer
-Anthony Cheng, alcheng@mit.edu
+By Anthony Cheng, alcheng@mit.edu
+
 Written Summer/Fall 2017, with support from Ira Winder
+
 Undergraduate Research Opportunity Program, Changing Places, MIT Media Lab
+
 This work may be utilized following the Creative Commons License BY-SA 3.0. 
+
 This is the same file as the "ABOUT.pde" file.
 
 ABOUT
