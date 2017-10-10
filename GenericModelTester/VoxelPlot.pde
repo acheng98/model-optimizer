@@ -122,8 +122,8 @@ void initVoxelPlot() {
 }
 
 void drawBox(int x, int y, float value) {
-  float xTrans = (x-floor(iterX/2))*varXSpace;
-  float yTrans = (y-floor(iterY/2))*varYSpace;
+  float xTrans = (x-floor(iterX/2))*varXSpace + 15;
+  float yTrans = (y-floor(iterY/2))*varYSpace + 15;
   float zBoxHeight = value*pow(iterModel.maxValue, -1)*cubePixels;
 
   pushMatrix();
