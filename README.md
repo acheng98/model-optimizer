@@ -18,7 +18,7 @@ REQUIREMENTS
 This program is written in Processing 2.2.1 to ensure full support of all features. 
 This program makes use of the package controlP5, as well as the standard Processing features. 
 This program assumes some basic knowledge of Processing and Java, for it will be required to load user data and write the desired model equation. All functions that require user input are in the "UserInputTab" file.
-Deeper knowledge of Processing is suggested when mutating the Input Data Visualization. Otherwise, nothing is explicitly necessary for the user to alter. 
+Deeper knowledge of Processing is suggested when mutating the Input Data Visualization. Otherwise, it is not explicitly necessary for the user to alter anything.
 
 USE CASES AND NOTES
 
